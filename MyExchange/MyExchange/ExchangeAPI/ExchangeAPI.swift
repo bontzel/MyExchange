@@ -21,11 +21,12 @@ struct ExchangeAPI {
     // MARK: - API Addresses
     fileprivate enum Address: String {
         
-        case login = "prof/auth"
+        case latest = "latest"
         
         private var baseURL: String {
-            return "https://api.owners.kia.com/"
+            return "https://api.exchangeratesapi.io/"
         }
+        
         var url: URL {
             return URL(string: baseURL.appending(rawValue))!
         }
@@ -34,6 +35,7 @@ struct ExchangeAPI {
     // MARK: - API errors
     enum Errors: Error {
         case requestFailed
+        case invalidDecoder
     }
     
     //MARK: - Decoder
@@ -44,8 +46,19 @@ struct ExchangeAPI {
         return decoder
     }
     
+    //MARK: - endpoints
+    
+    static var latest: Observable<Quote> = {
+        
+        let request: Observable<Quote> = ExchangeAPI.request(address: .latest)
+    
+        return request
+        
+    }()
+    
+    
     // MARK: - generic request to send an SLRequest
-    static private func request(_ sid: String, address: Address, parameters: Parameters = [:]) -> Observable<JSONObject> {
+    static private func request<T: Decodable>(address: Address, parameters: Parameters = [:]) -> Observable<T> {
         
         return Observable.create { observer in
             
@@ -57,7 +70,7 @@ struct ExchangeAPI {
             
             request.responseJSON { response in
                 guard response.error == nil, let data = response.data,
-                    let json = try? JSONSerialization.jsonObject(with: data, options: []) as? JSONObject else {
+                    let json = try? JSONDecoder.init().decode(Quote.self, from: data) as? T else {
                         observer.onError(Errors.requestFailed)
                         return
                 }

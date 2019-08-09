@@ -23,6 +23,7 @@
 		482AC50322FDB30F009D023F /* ExchangeServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC50222FDB30F009D023F /* ExchangeServiceType.swift */; };
 		482AC50622FDB388009D023F /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC50522FDB388009D023F /* BindableType.swift */; };
 		482AC50922FDB3D6009D023F /* ExchangeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC50822FDB3D6009D023F /* ExchangeAPI.swift */; };
+		482AC50D22FDBBEF009D023F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC50C22FDBBEF009D023F /* Quote.swift */; };
 		761B339DCFCFA56E17B5B694 /* libPods-MyExchangeAbstract-MyExchange.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FED8E27F9F4574F153CBA6 /* libPods-MyExchangeAbstract-MyExchange.a */; };
 		C16A738103C009590EA02BC8 /* libPods-MyExchangeAbstract-MyExchangeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 512D1EB2437BCC4AD2342286 /* libPods-MyExchangeAbstract-MyExchangeTests.a */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		482AC50222FDB30F009D023F /* ExchangeServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeServiceType.swift; sourceTree = "<group>"; };
 		482AC50522FDB388009D023F /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
 		482AC50822FDB3D6009D023F /* ExchangeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAPI.swift; sourceTree = "<group>"; };
+		482AC50C22FDBBEF009D023F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		512D1EB2437BCC4AD2342286 /* libPods-MyExchangeAbstract-MyExchangeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyExchangeAbstract-MyExchangeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FED8E27F9F4574F153CBA6 /* libPods-MyExchangeAbstract-MyExchange.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyExchangeAbstract-MyExchange.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E5BD977FADDDDC469CF0CF8 /* Pods-MyExchangeAbstract-MyExchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExchangeAbstract-MyExchange.release.xcconfig"; path = "Target Support Files/Pods-MyExchangeAbstract-MyExchange/Pods-MyExchangeAbstract-MyExchange.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				482AC50522FDB388009D023F /* BindableType.swift */,
+				482AC50C22FDBBEF009D023F /* Quote.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				482AC4F722FDB1C8009D023F /* SceneCoordinator.swift in Sources */,
 				482AC50122FDB300009D023F /* ExchangeService.swift in Sources */,
 				482AC4D022FDAEF3009D023F /* AppDelegate.swift in Sources */,
+				482AC50D22FDBBEF009D023F /* Quote.swift in Sources */,
 				482AC4FE22FDB237009D023F /* HomeViewModel.swift in Sources */,
 				482AC4F922FDB1DE009D023F /* Scene+ViewController.swift in Sources */,
 				482AC4F322FDB19B009D023F /* SceneCoordinatorType.swift in Sources */,
