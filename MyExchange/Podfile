@@ -1,0 +1,31 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+use_modular_headers!
+
+abstract_target 'MyExchangeAbstract' do
+
+    pod 'Alamofire'
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'RealmSwift'
+    pod 'RxRealm'
+    pod 'Unbox'
+    pod 'Then'
+    pod 'Reachability'
+    pod 'RxRealmDataSources'
+
+    target 'MyExchange' do
+        platform :ios, '12.2'
+        pod 'RxDataSources'
+    end
+    
+    target 'MyExchangeTests' do
+        platform :ios, '12.2'
+        pod 'RxTest'
+        pod 'RxBlocking'
+        pod 'Nimble'
+  		pod 'RxNimble'
+		pod 'OHHTTPStubs'
+  		pod 'OHHTTPStubs/Swift'
+    end
+end

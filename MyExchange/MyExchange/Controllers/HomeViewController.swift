@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  MyExchange
 //
 //  Created by Cosmin Bonta on 8/9/19.
@@ -8,13 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class HomeViewController: UIViewController, BindableType {
+   
+    var viewModel: HomeViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
+    
+    func bindViewModel() {
+        
+    }
+    
+    
 }
-
