@@ -17,10 +17,59 @@
                     <view key="view" contentMode="scaleToFill" id="dvt-BD-JaT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iwb-mA-JD5">
+                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RatesCell" id="pji-lb-G8P" customClass="RatesTableViewCell" customModule="MyExchange" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pji-lb-G8P" id="4YN-8g-DS3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzd-56-Nae">
+                                                    <rect key="frame" x="15" y="11.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bzd-56-Nae" firstAttribute="centerY" secondItem="4YN-8g-DS3" secondAttribute="centerY" id="7Yw-LQ-GWl"/>
+                                                <constraint firstItem="bzd-56-Nae" firstAttribute="leading" secondItem="4YN-8g-DS3" secondAttribute="leadingMargin" id="JeI-Ps-RWX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="bzd-56-Nae" id="dru-gz-hcn"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYe-XK-BsT">
+                                <rect key="frame" x="166.5" y="69" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Iwb-mA-JD5" firstAttribute="top" secondItem="Zub-uo-GDV" secondAttribute="top" constant="46" id="1qn-Ot-aml"/>
+                            <constraint firstItem="Iwb-mA-JD5" firstAttribute="leading" secondItem="Zub-uo-GDV" secondAttribute="leading" id="RUH-IH-Yl7"/>
+                            <constraint firstItem="Zub-uo-GDV" firstAttribute="trailing" secondItem="Iwb-mA-JD5" secondAttribute="trailing" id="St0-0x-qqy"/>
+                            <constraint firstItem="BYe-XK-BsT" firstAttribute="top" secondItem="Zub-uo-GDV" secondAttribute="top" constant="5" id="jBG-qL-yVH"/>
+                            <constraint firstItem="BYe-XK-BsT" firstAttribute="centerX" secondItem="dvt-BD-JaT" secondAttribute="centerX" id="obw-z3-e8E"/>
+                            <constraint firstItem="Zub-uo-GDV" firstAttribute="bottom" secondItem="Iwb-mA-JD5" secondAttribute="bottom" id="teU-je-dzy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Zub-uo-GDV"/>
                     </view>
                     <navigationItem key="navigationItem" id="kE1-Ob-OyH"/>
+                    <connections>
+                        <outlet property="tableView" destination="Iwb-mA-JD5" id="06v-rj-rdC"/>
+                        <outlet property="timestampLabel" destination="BYe-XK-BsT" id="xhu-wo-X4I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFh-zR-gt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

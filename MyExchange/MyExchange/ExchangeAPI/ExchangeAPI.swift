@@ -49,9 +49,21 @@ struct ExchangeAPI {
     //MARK: - endpoints
     
     static var latest: Observable<Quote> = {
-        
+
+//        if let path = Bundle.main.path(forResource: "latest", ofType: "json") {
+//            do {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//
+//                let quote = try JSONDecoder.init().decode(Quote.self, from: data)
+//
+//                return Observable.of(quote)
+//            } catch {
+//                print("file read error -> \(error)")
+//            }
+//        }
+//
         let request: Observable<Quote> = ExchangeAPI.request(address: .latest)
-    
+
         return request
         
     }()
@@ -70,7 +82,7 @@ struct ExchangeAPI {
             
             request.responseJSON { response in
                 guard response.error == nil, let data = response.data,
-                    let json = try? JSONDecoder.init().decode(Quote.self, from: data) as? T else {
+                    let json = try? JSONDecoder.init().decode(T.self, from: data) else {
                         observer.onError(Errors.requestFailed)
                         return
                 }

@@ -13,6 +13,8 @@ abstract_target 'MyExchangeAbstract' do
     pod 'Then'
     pod 'Reachability'
     pod 'RxRealmDataSources'
+	pod 'Action', '~> 3.9'
+  	pod 'NSObject+Rx', '~> 4.4'
 
     target 'MyExchange' do
         platform :ios, '12.2'

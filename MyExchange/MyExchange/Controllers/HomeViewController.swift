@@ -7,16 +7,58 @@
 //
 
 import UIKit
+import RxDataSources
+import RxSwift
+import RxCocoa
+import NSObject_Rx
+
+
 
 class HomeViewController: UIViewController, BindableType {
-   
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timestampLabel: UILabel!
+    
     var viewModel: HomeViewModel!
+    
+    var dataSource: RxTableViewSectionedReloadDataSource<RatesSection>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureDataSource()
+        
     }
     
     func bindViewModel() {
+        
+        
+        viewModel.latestItems
+            .do(
+                onNext: { _ in
+                    self.timestampLabel.text = Date().timeStampString()
+            })
+            .bind(to: self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: self.rx.disposeBag)
+        
+
+       
+        
+    }
+    
+    private func configureDataSource() {
+        
+        dataSource = RxTableViewSectionedReloadDataSource<RatesSection>( configureCell: {
+            dataSource, tableView, indexPath, item in
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RatesCell", for: indexPath) as! RatesTableViewCell
+            cell.configure(with: item)
+
+            return cell
+            },
+                                                                         titleForHeaderInSection: { dataSource, index in
+                                                                            dataSource.sectionModels[index].model
+        })
         
     }
     

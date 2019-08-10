@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import RxDataSources
 
-typealias Rates = [String: String]
+typealias Rates = (String, Double)
 
 struct Quote: Decodable {
     
     let base: String
-    let date: Date
-    let rates: Rates
+    let date: String
+    let rates: [Rates]
     
     private enum CodingKeys: String, CodingKey {
         case base, date, rates
@@ -25,8 +26,16 @@ struct Quote: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         base = try container.decode(String.self, forKey: .base)
-        date = try container.decode(Date.self, forKey: .date)
-        rates = try container.decode(Rates.self, forKey: .rates)
+        date = try container.decode(String.self, forKey: .date)
+        let rawRates = try container.decode([String: Double].self, forKey: .rates)
+       
+        var array = [Rates]()
+        for (key, value) in rawRates {
+            array.append(Rates(key, value))
+        }
+        
+        rates = array
+        
     }
     
 }

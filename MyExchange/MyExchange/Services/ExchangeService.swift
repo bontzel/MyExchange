@@ -7,25 +7,12 @@
 //
 
 import Foundation
+import RxSwift
 
 struct ExchangeService: ExchangeServiceType {
-    
-    init() {
-        // create a few default tasks
-        //        do {
-        //            let realm = try Realm()
-        //            if realm.objects(TaskItem.self).count == 0 {
-        //                ["Chapter 5: Filtering operators",
-        //                 "Chapter 4: Observables and Subjects in practice",
-        //                 "Chapter 3: Subjects",
-        //                 "Chapter 2: Observables",
-        //                 "Chapter 1: Hello, RxSwift"].forEach {
-        //                    self.createTask(title: $0)
-        //                }
-        //            }
-        //        } catch _ {
-        //        }
+        
+    func latestQuote(for currency: String) -> Observable<Quote> {
+        return ExchangeAPI.latest
     }
-    
     
 }

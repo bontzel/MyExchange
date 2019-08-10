@@ -16,7 +16,7 @@ enum ExchangeServiceError: Error {
 
 protocol ExchangeServiceType {
     
-//    @discardableResult
-//    func login() -> Completable
+    @discardableResult
+    func latestQuote(for currency: String) -> Observable<Quote>
     
 }
