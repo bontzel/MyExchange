@@ -22,6 +22,7 @@ struct ExchangeAPI {
     fileprivate enum Address: String {
         
         case latest = "latest"
+        case history = "history"
         
         private var baseURL: String {
             return "https://api.exchangeratesapi.io/"
@@ -48,7 +49,20 @@ struct ExchangeAPI {
     
     //MARK: - endpoints
     
-    static var latest: Observable<Quote> = {
+    static func lastFiveDaysHistory(for base: String) -> Observable<Quote> {
+        
+        var params = Parameters()
+        
+        params["start_at"] = Date().addingTimeInterval(-432000.0).paramString()
+        params["end_at"] = Date().paramString()
+        
+        let request: Observable<Quote> = ExchangeAPI.request(address: .history, parameters: params)
+        
+        return request
+        
+    }
+    
+    static func latest(for base: String) -> Observable<Quote> {
 
 //        if let path = Bundle.main.path(forResource: "latest", ofType: "json") {
 //            do {
@@ -62,11 +76,17 @@ struct ExchangeAPI {
 //            }
 //        }
 //
-        let request: Observable<Quote> = ExchangeAPI.request(address: .latest)
+        
+        var params = Parameters()
+        
+        params["base"] = base
+        
+        let request: Observable<Quote> = ExchangeAPI.request(address: .latest, parameters: params)
 
         return request
         
-    }()
+    }
+
     
     
     // MARK: - generic request to send an SLRequest
@@ -74,9 +94,17 @@ struct ExchangeAPI {
         
         return Observable.create { observer in
             
-            let request = Alamofire.request(address.url.absoluteString,
+            var comps = URLComponents(string: address.url.absoluteString)!
+            comps.queryItems = parameters.sorted{ $0.0 < $1.0 }.map({ (arg0) -> URLQueryItem in
+                
+                let (key, value) = arg0
+                return URLQueryItem.init(name: key, value: (value as! String))
+            })
+            let url = try! comps.asURL()
+            
+            let request = Alamofire.request(url,
                                             method: .get,
-                                            parameters: parameters,
+                                            parameters: Parameters(),
                                             encoding: URLEncoding.httpBody,
                                             headers: [:])
             

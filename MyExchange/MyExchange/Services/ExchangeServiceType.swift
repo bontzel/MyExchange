@@ -19,4 +19,8 @@ protocol ExchangeServiceType {
     @discardableResult
     func latestQuote(for currency: String) -> Observable<Quote>
     
+    @discardableResult
+    func symbols() -> Observable<[String]>
+    
+    
 }

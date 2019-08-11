@@ -20,4 +20,14 @@ extension Date {
         
     }
     
+    func paramString() -> String {
+        
+        let df = DateFormatter.init()
+        
+        df.dateFormat = "YYYY-MM-dd"
+        
+        return df.string(from: self)
+        
+    }
+    
 }

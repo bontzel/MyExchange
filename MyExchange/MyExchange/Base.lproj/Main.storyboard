@@ -100,13 +100,17 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uWI-Qv-3qM">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="B6Q-rt-FQq">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B6Q-rt-FQq" id="XTK-7X-HiA">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose base currency:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcy-uZ-8Qn">
-                                <rect key="frame" x="8" y="91" width="177" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refresh interval:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8u-DK-iHQ">
                                 <rect key="frame" x="8" y="62" width="124" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -117,22 +121,33 @@
                                 <rect key="frame" x="140" y="57.5" width="53" height="30"/>
                                 <state key="normal" title="Change"/>
                             </button>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ng9-X5-vL7">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="M8u-DK-iHQ" firstAttribute="leading" secondItem="zcy-uZ-8Qn" secondAttribute="leading" id="D5i-ad-YDa"/>
                             <constraint firstItem="uWI-Qv-3qM" firstAttribute="leading" secondItem="dW1-Sb-YdP" secondAttribute="leading" id="DIC-yA-roN"/>
                             <constraint firstItem="GfT-TG-8IJ" firstAttribute="centerY" secondItem="M8u-DK-iHQ" secondAttribute="centerY" id="H9S-hB-14o"/>
                             <constraint firstItem="uWI-Qv-3qM" firstAttribute="top" secondItem="dW1-Sb-YdP" secondAttribute="top" constant="100" id="Ig9-a9-zj0"/>
                             <constraint firstItem="dW1-Sb-YdP" firstAttribute="bottom" secondItem="uWI-Qv-3qM" secondAttribute="bottom" id="IuI-ZM-s7r"/>
-                            <constraint firstItem="zcy-uZ-8Qn" firstAttribute="top" secondItem="M8u-DK-iHQ" secondAttribute="bottom" constant="8" id="SBs-y5-C8W"/>
-                            <constraint firstItem="uWI-Qv-3qM" firstAttribute="top" secondItem="zcy-uZ-8Qn" secondAttribute="bottom" constant="8" id="Skq-lf-ANd"/>
+                            <constraint firstItem="ng9-X5-vL7" firstAttribute="leading" secondItem="dW1-Sb-YdP" secondAttribute="leading" id="LN2-5D-bHC"/>
+                            <constraint firstItem="dW1-Sb-YdP" firstAttribute="bottom" secondItem="ng9-X5-vL7" secondAttribute="bottom" id="RDb-Lk-QKR"/>
+                            <constraint firstItem="M8u-DK-iHQ" firstAttribute="top" secondItem="dW1-Sb-YdP" secondAttribute="top" constant="42" id="Xo3-E0-fKH"/>
                             <constraint firstItem="GfT-TG-8IJ" firstAttribute="leading" secondItem="M8u-DK-iHQ" secondAttribute="trailing" constant="8" id="aLI-QH-ZOU"/>
+                            <constraint firstItem="dW1-Sb-YdP" firstAttribute="trailing" secondItem="ng9-X5-vL7" secondAttribute="trailing" id="dsQ-vC-3Va"/>
                             <constraint firstItem="dW1-Sb-YdP" firstAttribute="trailing" secondItem="uWI-Qv-3qM" secondAttribute="trailing" id="lWE-bT-nWW"/>
-                            <constraint firstItem="zcy-uZ-8Qn" firstAttribute="leading" secondItem="dW1-Sb-YdP" secondAttribute="leading" constant="8" id="trl-9J-gpp"/>
+                            <constraint firstItem="M8u-DK-iHQ" firstAttribute="leading" secondItem="dW1-Sb-YdP" secondAttribute="leading" constant="8" id="tHP-ta-Wew"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dW1-Sb-YdP"/>
                     </view>
+                    <connections>
+                        <outlet property="changeIntervalButton" destination="GfT-TG-8IJ" id="hPV-U9-qzB"/>
+                        <outlet property="pickerView" destination="ng9-X5-vL7" id="mW7-mT-SYV"/>
+                        <outlet property="refreshLabel" destination="M8u-DK-iHQ" id="h9L-sf-2BC"/>
+                        <outlet property="tableView" destination="uWI-Qv-3qM" id="Eob-yZ-kCP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zK1-NK-7KO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

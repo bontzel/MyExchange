@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, BindableType {
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: self.rx.disposeBag)
         
-
+        
         self.settingsButton.rx.action = viewModel.onSettings()
        
         
