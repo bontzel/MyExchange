@@ -11,4 +11,5 @@ import Foundation
 enum Scene {
     case home(HomeViewModel)
     case settings(SettingsViewModel)
+    case history(HistoryViewModel)
 }

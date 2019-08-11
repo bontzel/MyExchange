@@ -27,8 +27,16 @@ extension Scene {
             var vc = storyboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
             vc.bindViewModel(to: viewModel)
             return vc
+        
+        case .history(let viewModel):
             
+            var vc = storyboard.instantiateViewController(withIdentifier: "History") as! HistoryViewController
+            vc.bindViewModel(to: viewModel)
+            return vc
+        
         }
+        
+        
         
     }
 }

@@ -36,7 +36,7 @@ struct ExchangeAPI {
     // MARK: - API errors
     enum Errors: Error {
         case requestFailed
-        case invalidDecoder
+        case parseFailed
     }
     
     //MARK: - Decoder
@@ -49,33 +49,20 @@ struct ExchangeAPI {
     
     //MARK: - endpoints
     
-    static func lastFiveDaysHistory(for base: String) -> Observable<Quote> {
+    static func lastFiveDaysHistory(for base: String) -> Observable<HistoryQuote> {
         
         var params = Parameters()
         
         params["start_at"] = Date().addingTimeInterval(-432000.0).paramString()
         params["end_at"] = Date().paramString()
         
-        let request: Observable<Quote> = ExchangeAPI.request(address: .history, parameters: params)
+        let request: Observable<HistoryQuote> = ExchangeAPI.request(address: .history, parameters: params)
         
         return request
         
     }
     
     static func latest(for base: String) -> Observable<Quote> {
-
-//        if let path = Bundle.main.path(forResource: "latest", ofType: "json") {
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//
-//                let quote = try JSONDecoder.init().decode(Quote.self, from: data)
-//
-//                return Observable.of(quote)
-//            } catch {
-//                print("file read error -> \(error)")
-//            }
-//        }
-//
         
         var params = Parameters()
         
@@ -86,6 +73,26 @@ struct ExchangeAPI {
         return request
         
     }
+    
+    static var symbols: Observable<[String]> = {
+        
+        if let path = Bundle.main.path(forResource: "symbols", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+
+                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! JSONObject
+                
+                let symbols = json["symbols"] as? [String]
+
+                return Observable.just(symbols ?? [])
+            } catch {
+                print("file read error -> \(error)")
+            }
+        }
+        
+        return Observable.just([])
+        
+    }()
 
     
     
