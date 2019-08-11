@@ -21,7 +21,14 @@ extension Scene {
             var vc = nc.viewControllers.first as! HomeViewController
             vc.bindViewModel(to: viewModel)
             return nc
-      
+            
+        case .settings(let viewModel):
+            
+            var vc = storyboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+            vc.bindViewModel(to: viewModel)
+            return vc
+            
         }
+        
     }
 }

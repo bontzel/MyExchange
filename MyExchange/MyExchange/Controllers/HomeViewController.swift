@@ -18,6 +18,8 @@ class HomeViewController: UIViewController, BindableType {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var historyButton: UIButton!
     
     var viewModel: HomeViewModel!
     
@@ -42,6 +44,7 @@ class HomeViewController: UIViewController, BindableType {
             .disposed(by: self.rx.disposeBag)
         
 
+        self.settingsButton.rx.action = viewModel.onSettings()
        
         
     }

@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxDataSources
 import Action
+import RxRelay
 
 typealias RatesSection = SectionModel<String, Rates>
 
@@ -18,29 +19,55 @@ struct HomeViewModel {
     let sceneCoordinator: SceneCoordinatorType
     let exchangeService: ExchangeServiceType
     
+    fileprivate var base: BehavoirRelay<String> = BehavoirRelay<String>(defaultValue: "EUR")
+    fileprivate var interval: BehavoirRelay<RxTimeInterval> = BehavoirRelay<RxTimeInterval>(defaultValue: 3)
+    
     init(exchangeService: ExchangeServiceType, coordinator: SceneCoordinatorType) {
         
         self.exchangeService = exchangeService
         self.sceneCoordinator = coordinator
         
+        
     }
+    
     
     var latestItems: Observable<[RatesSection]> {
         
-        return Observable<Int>.timer(0, period: 3, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
-            .flatMap { _ -> Observable<[RatesSection]> in
+        return self.interval.asObservable()
+            .flatMap({ (interval) -> Observable<[RatesSection]> in
                 
-                return self.exchangeService.latestQuote(for: "")
-                    .map { quote in
+                let timer =  Observable<Int>.timer(0, period: interval, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+                
+                return Observable.combineLatest(timer, self.base.asObservable())
+                    .flatMap { (_, base) -> Observable<[RatesSection]> in
                         
-                        RatesSection.init(model: quote.base, items: quote.rates)
+                        return self.exchangeService.latestQuote(for: base)
+                            .map { quote in
+                                RatesSection.init(model: quote.base, items: quote.rates)
+                            }
+                            .toArray()
                         
-                    }
-                    .toArray()
-
-        }
+                }
+                
+            })
         
     }
+    
+    
+    func onSettings() -> CocoaAction {
+        return CocoaAction { _ in
+            
+            let settingsViewModel = SettingsViewModel(exchangeService: self.exchangeService, coordinator: self.sceneCoordinator, currencyRelay: self.base)
+            return self.sceneCoordinator
+                .transition(to: Scene.settings(settingsViewModel), type: .push)
+                .asObservable()
+                .map { _ in }
+            
+        }
+    }
+    
+    
+    
     
     
     

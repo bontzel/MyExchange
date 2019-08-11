@@ -48,25 +48,39 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYe-XK-BsT">
-                                <rect key="frame" x="166.5" y="69" width="42" height="21"/>
+                                <rect key="frame" x="8" y="69" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykP-j9-eXr">
+                                <rect key="frame" x="317" y="64.5" width="50" height="30"/>
+                                <state key="normal" title="History"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcp-Rx-nuO">
+                                <rect key="frame" x="252" y="64.5" width="57" height="30"/>
+                                <state key="normal" title="Settings"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Zub-uo-GDV" firstAttribute="trailing" secondItem="ykP-j9-eXr" secondAttribute="trailing" constant="8" id="03v-T0-H5H"/>
                             <constraint firstItem="Iwb-mA-JD5" firstAttribute="top" secondItem="Zub-uo-GDV" secondAttribute="top" constant="46" id="1qn-Ot-aml"/>
+                            <constraint firstItem="ykP-j9-eXr" firstAttribute="centerY" secondItem="BYe-XK-BsT" secondAttribute="centerY" id="FkW-cD-gm7"/>
+                            <constraint firstItem="BYe-XK-BsT" firstAttribute="leading" secondItem="Zub-uo-GDV" secondAttribute="leading" constant="8" id="I3i-1b-de9"/>
                             <constraint firstItem="Iwb-mA-JD5" firstAttribute="leading" secondItem="Zub-uo-GDV" secondAttribute="leading" id="RUH-IH-Yl7"/>
                             <constraint firstItem="Zub-uo-GDV" firstAttribute="trailing" secondItem="Iwb-mA-JD5" secondAttribute="trailing" id="St0-0x-qqy"/>
                             <constraint firstItem="BYe-XK-BsT" firstAttribute="top" secondItem="Zub-uo-GDV" secondAttribute="top" constant="5" id="jBG-qL-yVH"/>
-                            <constraint firstItem="BYe-XK-BsT" firstAttribute="centerX" secondItem="dvt-BD-JaT" secondAttribute="centerX" id="obw-z3-e8E"/>
+                            <constraint firstItem="ykP-j9-eXr" firstAttribute="leading" secondItem="vcp-Rx-nuO" secondAttribute="trailing" constant="8" id="lcH-2t-fgl"/>
+                            <constraint firstItem="vcp-Rx-nuO" firstAttribute="centerY" secondItem="ykP-j9-eXr" secondAttribute="centerY" id="lot-XL-jwy"/>
                             <constraint firstItem="Zub-uo-GDV" firstAttribute="bottom" secondItem="Iwb-mA-JD5" secondAttribute="bottom" id="teU-je-dzy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zub-uo-GDV"/>
                     </view>
                     <navigationItem key="navigationItem" id="kE1-Ob-OyH"/>
                     <connections>
+                        <outlet property="historyButton" destination="ykP-j9-eXr" id="t7Q-wV-bx8"/>
+                        <outlet property="settingsButton" destination="vcp-Rx-nuO" id="bv8-oM-7MY"/>
                         <outlet property="tableView" destination="Iwb-mA-JD5" id="06v-rj-rdC"/>
                         <outlet property="timestampLabel" destination="BYe-XK-BsT" id="xhu-wo-X4I"/>
                     </connections>
@@ -74,6 +88,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFh-zR-gt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="201" y="-185"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="ZH5-ut-zQd">
+            <objects>
+                <viewController storyboardIdentifier="Settings" id="0fH-n6-ofl" customClass="SettingsViewController" customModule="MyExchange" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mnh-V9-FKL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uWI-Qv-3qM">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose base currency:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcy-uZ-8Qn">
+                                <rect key="frame" x="8" y="91" width="177" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Refresh interval:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8u-DK-iHQ">
+                                <rect key="frame" x="8" y="62" width="124" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfT-TG-8IJ">
+                                <rect key="frame" x="140" y="57.5" width="53" height="30"/>
+                                <state key="normal" title="Change"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="M8u-DK-iHQ" firstAttribute="leading" secondItem="zcy-uZ-8Qn" secondAttribute="leading" id="D5i-ad-YDa"/>
+                            <constraint firstItem="uWI-Qv-3qM" firstAttribute="leading" secondItem="dW1-Sb-YdP" secondAttribute="leading" id="DIC-yA-roN"/>
+                            <constraint firstItem="GfT-TG-8IJ" firstAttribute="centerY" secondItem="M8u-DK-iHQ" secondAttribute="centerY" id="H9S-hB-14o"/>
+                            <constraint firstItem="uWI-Qv-3qM" firstAttribute="top" secondItem="dW1-Sb-YdP" secondAttribute="top" constant="100" id="Ig9-a9-zj0"/>
+                            <constraint firstItem="dW1-Sb-YdP" firstAttribute="bottom" secondItem="uWI-Qv-3qM" secondAttribute="bottom" id="IuI-ZM-s7r"/>
+                            <constraint firstItem="zcy-uZ-8Qn" firstAttribute="top" secondItem="M8u-DK-iHQ" secondAttribute="bottom" constant="8" id="SBs-y5-C8W"/>
+                            <constraint firstItem="uWI-Qv-3qM" firstAttribute="top" secondItem="zcy-uZ-8Qn" secondAttribute="bottom" constant="8" id="Skq-lf-ANd"/>
+                            <constraint firstItem="GfT-TG-8IJ" firstAttribute="leading" secondItem="M8u-DK-iHQ" secondAttribute="trailing" constant="8" id="aLI-QH-ZOU"/>
+                            <constraint firstItem="dW1-Sb-YdP" firstAttribute="trailing" secondItem="uWI-Qv-3qM" secondAttribute="trailing" id="lWE-bT-nWW"/>
+                            <constraint firstItem="zcy-uZ-8Qn" firstAttribute="leading" secondItem="dW1-Sb-YdP" secondAttribute="leading" constant="8" id="trl-9J-gpp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dW1-Sb-YdP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zK1-NK-7KO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="976" y="-187"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cue-0D-8qX">

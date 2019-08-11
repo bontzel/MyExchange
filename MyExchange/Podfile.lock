@@ -52,6 +52,8 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxRealm (~> 0.7.6)
     - RxSwift (~> 4.0)
+  - RxRelay (0.1.3):
+    - RxSwift
   - RxSwift (4.5.0)
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
@@ -73,6 +75,7 @@ DEPENDENCIES:
   - RxNimble
   - RxRealm
   - RxRealmDataSources
+  - RxRelay
   - RxSwift
   - RxTest
   - Then
@@ -95,6 +98,7 @@ SPEC REPOS:
     - RxNimble
     - RxRealm
     - RxRealmDataSources
+    - RxRelay
     - RxSwift
     - RxTest
     - Then
@@ -116,11 +120,12 @@ SPEC CHECKSUMS:
   RxNimble: ba6caf0195c37fd50dd4b967624b66ff580d781a
   RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
   RxRealmDataSources: 89b61c0d3edf7769da2a6bf4dcf317bc713394db
+  RxRelay: e2a4a9910e2b23151c6ee2fe8d717016280d924f
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
   Unbox: d2677af8fde59a30141e02981b11cb6a0e3b6bc5
 
-PODFILE CHECKSUM: eb13020b744e4a230657ff56a3c6838b4b47a2a9
+PODFILE CHECKSUM: a124be79ea47ebbee1c7cdb485f92ca6793e5ddf
 
 COCOAPODS: 1.7.4
