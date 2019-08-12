@@ -51,6 +51,22 @@ class MyExchangeTests: XCTestCase {
     
         
     }
+    
+    func testHistoryQuote() {
+        
+        let obs = ExchangeAPI.lastFiveDaysHistory(for: "EUR")
+        
+        guard let history = obs.toBlocking().firstOrNil() else {
+            XCTFail()
+            return
+        }
+        
+        expect(history.base == "EUR").to(beTrue())
+        expect(history.rates).toNot(beNil())
+        expect(history.rates.count > 0).to(beTrue())
+        
+        
+    }
 
 }
 
