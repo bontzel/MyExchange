@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// Navigator class
 class SceneCoordinator: NSObject, SceneCoordinatorType, UINavigationControllerDelegate {
     
     private var window: UIWindow
@@ -61,23 +62,6 @@ class SceneCoordinator: NSObject, SceneCoordinatorType, UINavigationControllerDe
             navigationController.pushViewController(viewController, animated: true)
             currentViewController = SceneCoordinator.actualViewController(for: viewController)
             
-        case .pop:
-            guard let navigationController = currentViewController.navigationController else {
-                fatalError("Can't pop a view controller without a current navigation controller")
-            }
-            // one-off subscription to be notified when push complete
-            _ = navigationController.rx.delegate
-                .sentMessage(#selector(UINavigationController.popViewController(animated:)))
-                .map { _ in }
-                .bind(to: subject)
-            navigationController.popViewController(animated: true)
-            currentViewController = SceneCoordinator.actualViewController(for: navigationController.topViewController!)
-            
-        case .modal:
-            currentViewController.present(viewController, animated: true) {
-                subject.onCompleted()
-            }
-            currentViewController = SceneCoordinator.actualViewController(for: viewController)
         }
         return subject.asObservable()
             .take(1)
@@ -85,40 +69,5 @@ class SceneCoordinator: NSObject, SceneCoordinatorType, UINavigationControllerDe
         
     }
     
-    @discardableResult
-    func pop(animated: Bool) -> Completable {
-        
-        let subject = PublishSubject<Void>()
-        
-        if let presenter = currentViewController.presentingViewController {
-            
-            // dismiss a modal controller
-            currentViewController.dismiss(animated: animated) {
-                self.currentViewController = SceneCoordinator.actualViewController(for: presenter)
-                subject.onCompleted()
-            }
-            
-        } else if let navigationController = currentViewController.navigationController {
-            
-            // navigate up the stack
-            // one-off subscription to be notified when pop complete
-            _ = navigationController.rx.delegate
-                .sentMessage(#selector(UINavigationControllerDelegate.navigationController(_:didShow:animated:)))
-                .map { _ in }
-                .bind(to: subject)
-            
-            guard navigationController.popViewController(animated: animated) != nil else {
-                fatalError("can't navigate back from \(currentViewController)")
-            }
-            
-            currentViewController = SceneCoordinator.actualViewController(for: navigationController.viewControllers.last!)
-            
-        } else {
-            fatalError("Not a modal, no navigation controller: can't navigate back from \(currentViewController)")
-        }
-        return subject.asObservable()
-            .take(1)
-            .ignoreElements()
-    }
     
 }

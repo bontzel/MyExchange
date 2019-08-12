@@ -34,6 +34,7 @@ struct HomeViewModel {
     }
     
     
+    /// Latest quote for the prefered base currency
     var latestItems: Observable<[RatesSection]> {
         
         return self.interval.asObservable()
@@ -41,15 +42,19 @@ struct HomeViewModel {
 
                 //need to dispose timer when new value is published
                 let timer =  Observable<Int>.timer(0, period: interval, scheduler: MainScheduler.instance)
+                    //do so when self.signal publishes value
                     .takeUntil(self.signal)
 
                 return Observable.combineLatest(timer, self.base.asObservable())
+                    //take last timer tick and latest currency preference
                     .flatMapLatest { (_, base) -> Observable<[RatesSection]> in
 
+                        //do request
                         return self.exchangeService.latestQuote(for: base)
                             .map { quote in
                                 RatesSection.init(model: quote.base, items: quote.rates)
                             }
+                            //profit
                             .toArray()
 
                 }
