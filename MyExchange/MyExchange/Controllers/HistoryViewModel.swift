@@ -26,12 +26,14 @@ struct HistoryViewModel {
         
     }
     
+    /// Last 5 days history for RON, BGN and USD. Doesn't work well since we get 3 days from those 5 requested and I forgot to map which days from those 5 are the 3 that we get. 
     var allRates: Observable<[HistorySection]> {
                 
          return Observable.merge(self.exchangeService.lastFiveDaysHistory(for: "RON"), self.exchangeService.lastFiveDaysHistory(for: "USD"), self.exchangeService.lastFiveDaysHistory(for: "BGN"))
-            //get the all values from the given time for each symbol and the base currency. i.e: (["EUR": [1.5, 2.23, 2.55], "RON": [1.5, 2.23, 2.55]...], "BGN")
+            //get all the values from the given time for each symbol and the base currency. i.e: (["EUR": [1.5, 2.23, 2.55], "RON": [1.5, 2.23, 2.55]...], "BGN")
             .flatMap { (historyQuote) -> Observable<(RatesForCurrency, String)> in
                
+                //get all the symbols
                 return self.exchangeService.symbols()
                     .flatMap { array -> Observable<String> in
                         return Observable.from(array)
@@ -68,6 +70,7 @@ struct HistoryViewModel {
             }
             //get all 3 of them in the previous form
             .toArray()
+            //morph to section items
             .flatMap { (items) -> Observable<[HistorySection]> in
              
                 var sectionsArray = [HistorySection]()
@@ -75,7 +78,7 @@ struct HistoryViewModel {
                 for item in items {
                     sectionsArray.append(HistorySection.init(model: item.1, items: [item.0]))
                 }
-                
+                //profit
                 return Observable.of(sectionsArray)
                 
             }

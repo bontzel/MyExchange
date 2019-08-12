@@ -34,14 +34,17 @@ struct HomeViewModel {
     }
     
     
-    /// Latest quote for the prefered base currency
+    /// Latest quote for the preferred base currency
     var latestItems: Observable<[RatesSection]> {
         
+        //get preferred inverval
         return self.interval.asObservable()
+            //morph into datasource sections
             .flatMap({ (interval) -> Observable<[RatesSection]> in
 
-                //need to dispose timer when new value is published
+                //create timer to tick at preferred interval
                 let timer =  Observable<Int>.timer(0, period: interval, scheduler: MainScheduler.instance)
+                    //need to dispose timer when new value is published
                     //do so when self.signal publishes value
                     .takeUntil(self.signal)
 
@@ -68,6 +71,7 @@ struct HomeViewModel {
         return CocoaAction { _ in
             
             let settingsViewModel = SettingsViewModel(exchangeService: self.exchangeService, coordinator: self.sceneCoordinator, currencyRelay: self.base, intervalRelay: self.interval, onUpdateCurrency: self.onUpdateCurrency(), endTimerSignal: self.signal)
+            
             return self.sceneCoordinator
                 .transition(to: Scene.settings(settingsViewModel), type: .push)
                 .asObservable()
