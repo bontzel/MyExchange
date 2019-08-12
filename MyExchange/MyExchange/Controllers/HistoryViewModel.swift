@@ -26,7 +26,7 @@ struct HistoryViewModel {
         
     }
     
-    /// Last 5 days history for RON, BGN and USD. Doesn't work well since we get 3 days from those 5 requested and I forgot to map which days from those 5 are the 3 that we get. 
+    /// Last 5 days history for RON, BGN and USD. Doesn't work well since we get (1-5) days from those 5 requested and I forgot to map which days from those 5 are those that we get. 
     var allRates: Observable<[HistorySection]> {
                 
          return Observable.merge(self.exchangeService.lastFiveDaysHistory(for: "RON"), self.exchangeService.lastFiveDaysHistory(for: "USD"), self.exchangeService.lastFiveDaysHistory(for: "BGN"))
