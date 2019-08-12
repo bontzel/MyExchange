@@ -23,6 +23,7 @@ struct HomeViewModel {
     fileprivate var base: BehavoirRelay<String> = BehavoirRelay<String>(defaultValue: "EUR")
     fileprivate var interval: BehavoirRelay<RxTimeInterval> = BehavoirRelay<RxTimeInterval>(defaultValue: 3)
     fileprivate var timer = Observable<Int>.timer(0, period: 3, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+    fileprivate var signal = PublishSubject<Int>()
     
     init(exchangeService: ExchangeServiceType, coordinator: SceneCoordinatorType) {
         
@@ -40,7 +41,7 @@ struct HomeViewModel {
 
                 //need to dispose timer when new value is published
                 let timer =  Observable<Int>.timer(0, period: interval, scheduler: MainScheduler.instance)
-//                    .takeUntil(self.interval.asObservable())
+                    .takeUntil(self.signal)
 
                 return Observable.combineLatest(timer, self.base.asObservable())
                     .flatMapLatest { (_, base) -> Observable<[RatesSection]> in
@@ -61,7 +62,7 @@ struct HomeViewModel {
     func onSettings() -> CocoaAction {
         return CocoaAction { _ in
             
-            let settingsViewModel = SettingsViewModel(exchangeService: self.exchangeService, coordinator: self.sceneCoordinator, currencyRelay: self.base, intervalRelay: self.interval, onUpdateCurrency: self.onUpdateCurrency())
+            let settingsViewModel = SettingsViewModel(exchangeService: self.exchangeService, coordinator: self.sceneCoordinator, currencyRelay: self.base, intervalRelay: self.interval, onUpdateCurrency: self.onUpdateCurrency(), endTimerSignal: self.signal)
             return self.sceneCoordinator
                 .transition(to: Scene.settings(settingsViewModel), type: .push)
                 .asObservable()

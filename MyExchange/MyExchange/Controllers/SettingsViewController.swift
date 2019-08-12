@@ -65,7 +65,9 @@ class SettingsViewController: UIViewController, BindableType {
             .subscribe(
                 onNext: { interval in
                     //doesn't work properly
-//                        vm.intervalRelay.accept(interval.last ?? 3)
+                    vm.endTimerSignal.onNext(1)
+                    vm.intervalRelay.accept(interval.last ?? 3)
+                    
                 }
             )
             .disposed(by: self.rx.disposeBag)

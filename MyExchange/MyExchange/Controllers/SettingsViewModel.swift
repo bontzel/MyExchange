@@ -21,14 +21,16 @@ struct SettingsViewModel {
     let currencyRelay: BehavoirRelay<String>
     let intervalRelay: BehavoirRelay<RxTimeInterval>
     let onUpdateCurrency: Action<String, Void>
+    let endTimerSignal: PublishSubject<Int>
     
-    init(exchangeService: ExchangeServiceType, coordinator: SceneCoordinatorType, currencyRelay: BehavoirRelay<String>, intervalRelay: BehavoirRelay<RxTimeInterval>, onUpdateCurrency: Action<String, Void>) {
+    init(exchangeService: ExchangeServiceType, coordinator: SceneCoordinatorType, currencyRelay: BehavoirRelay<String>, intervalRelay: BehavoirRelay<RxTimeInterval>, onUpdateCurrency: Action<String, Void>, endTimerSignal: PublishSubject<Int>) {
         
         self.exchangeService = exchangeService
         self.sceneCoordinator = coordinator
         self.currencyRelay = currencyRelay
         self.intervalRelay = intervalRelay
         self.onUpdateCurrency = onUpdateCurrency
+        self.endTimerSignal = endTimerSignal
         
     }
     
