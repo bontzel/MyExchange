@@ -2,34 +2,33 @@
 # platform :ios, '9.0'
 use_modular_headers!
 
-abstract_target 'MyExchangeAbstract' do
+def pods
 
-    pod 'Alamofire'
+ 	pod 'Alamofire'
     pod 'RxSwift'
     pod 'RxCocoa'
-    pod 'RealmSwift'
-    pod 'RxRealm'
-    pod 'Unbox'
     pod 'Then'
-    pod 'Reachability'
-    pod 'RxRealmDataSources'
-	pod 'Action', '~> 3.9'
-  	pod 'NSObject+Rx', '~> 4.4'
+	pod 'Action'
+  	pod 'NSObject+Rx'
   	pod 'RxRelay'
   	pod 'Charts'
+  	pod 'RxDataSources'
 
-    target 'MyExchange' do
+
+end
+
+target 'MyExchange' do
         platform :ios, '12.2'
-        pod 'RxDataSources'
-    end
-    
-    target 'MyExchangeTests' do
+        pods
+end
+
+target 'MyExchangeTests' do
         platform :ios, '12.2'
-        pod 'RxTest'
-        pod 'RxBlocking'
-        pod 'Nimble'
-  		pod 'RxNimble'
-		pod 'OHHTTPStubs'
-  		pod 'OHHTTPStubs/Swift'
-    end
+        pods
+  #       pod 'RxTest'
+  #       pod 'RxBlocking'
+  #       pod 'Nimble'
+  # 		pod 'RxNimble'
+		# pod 'OHHTTPStubs'
+  # 		pod 'OHHTTPStubs/Swift'
 end

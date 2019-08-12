@@ -8,7 +8,6 @@
 
 import Foundation
 import RxSwift
-import RealmSwift
 
 enum ExchangeServiceError: Error {
     case someError
