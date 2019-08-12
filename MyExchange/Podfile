@@ -16,6 +16,7 @@ abstract_target 'MyExchangeAbstract' do
 	pod 'Action', '~> 3.9'
   	pod 'NSObject+Rx', '~> 4.4'
   	pod 'RxRelay'
+  	pod 'Charts'
 
     target 'MyExchange' do
         platform :ios, '12.2'

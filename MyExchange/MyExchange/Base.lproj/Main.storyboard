@@ -164,6 +164,31 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zqc-7J-T9j">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="historyCell" rowHeight="400" id="waS-sb-Wgb" customClass="HistoryTableViewCell" customModule="MyExchange" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="400"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="waS-sb-Wgb" id="mqs-t9-2wq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="399.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q63-jI-tJX" customClass="LineChartView" customModule="Charts">
+                                                    <rect key="frame" x="15" y="11" width="345" height="378"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Q63-jI-tJX" firstAttribute="leading" secondItem="mqs-t9-2wq" secondAttribute="leadingMargin" id="YCM-KD-8yi"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Q63-jI-tJX" secondAttribute="trailing" id="goL-Lf-0j8"/>
+                                                <constraint firstItem="Q63-jI-tJX" firstAttribute="top" secondItem="mqs-t9-2wq" secondAttribute="topMargin" id="tx5-wC-fH9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Q63-jI-tJX" secondAttribute="bottom" id="xni-gM-lOe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lineChart" destination="Q63-jI-tJX" id="eTm-Hk-AJd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,6 +200,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HpO-En-Bu0"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Zqc-7J-T9j" id="ODd-fl-3b0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVu-NI-K4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

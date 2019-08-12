@@ -34,6 +34,7 @@
 		482AC51F2300D224009D023F /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC51E2300D224009D023F /* HistoryViewController.swift */; };
 		482AC5212300D230009D023F /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC5202300D230009D023F /* HistoryViewModel.swift */; };
 		482AC5232300D6F2009D023F /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 482AC5222300D6F2009D023F /* symbols.json */; };
+		482AC5272300DF8F009D023F /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482AC5262300DF8F009D023F /* HistoryTableViewCell.swift */; };
 		761B339DCFCFA56E17B5B694 /* libPods-MyExchangeAbstract-MyExchange.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FED8E27F9F4574F153CBA6 /* libPods-MyExchangeAbstract-MyExchange.a */; };
 		C16A738103C009590EA02BC8 /* libPods-MyExchangeAbstract-MyExchangeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 512D1EB2437BCC4AD2342286 /* libPods-MyExchangeAbstract-MyExchangeTests.a */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		482AC51E2300D224009D023F /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		482AC5202300D230009D023F /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		482AC5222300D6F2009D023F /* symbols.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = symbols.json; sourceTree = "<group>"; };
+		482AC5262300DF8F009D023F /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		512D1EB2437BCC4AD2342286 /* libPods-MyExchangeAbstract-MyExchangeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyExchangeAbstract-MyExchangeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56FED8E27F9F4574F153CBA6 /* libPods-MyExchangeAbstract-MyExchange.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyExchangeAbstract-MyExchange.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E5BD977FADDDDC469CF0CF8 /* Pods-MyExchangeAbstract-MyExchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExchangeAbstract-MyExchange.release.xcconfig"; path = "Target Support Files/Pods-MyExchangeAbstract-MyExchange/Pods-MyExchangeAbstract-MyExchange.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				482AC50F22FEE9C5009D023F /* RatesTableViewCell.swift */,
+				482AC5262300DF8F009D023F /* HistoryTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				482AC4D022FDAEF3009D023F /* AppDelegate.swift in Sources */,
 				482AC51D2300C6DA009D023F /* String+.swift in Sources */,
 				482AC50D22FDBBEF009D023F /* Quote.swift in Sources */,
+				482AC5272300DF8F009D023F /* HistoryTableViewCell.swift in Sources */,
 				482AC4FE22FDB237009D023F /* HomeViewModel.swift in Sources */,
 				482AC51B2300C04C009D023F /* HistoryQuote.swift in Sources */,
 				482AC51722FF3699009D023F /* SettingsViewController.swift in Sources */,

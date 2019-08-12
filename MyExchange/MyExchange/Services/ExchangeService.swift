@@ -19,4 +19,8 @@ struct ExchangeService: ExchangeServiceType {
         return ExchangeAPI.symbols
     }
     
+    func lastFiveDaysHistory(for currency: String) -> Observable<HistoryQuote> {
+        return ExchangeAPI.lastFiveDaysHistory(for: currency)
+    }
+    
 }

@@ -45,6 +45,7 @@ class HomeViewController: UIViewController, BindableType {
         
         
         self.settingsButton.rx.action = viewModel.onSettings()
+        self.historyButton.rx.action = viewModel.onHistory()
        
         
     }

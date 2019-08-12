@@ -22,5 +22,8 @@ protocol ExchangeServiceType {
     @discardableResult
     func symbols() -> Observable<[String]>
     
+    @discardableResult
+    func lastFiveDaysHistory(for currency: String) -> Observable<HistoryQuote>
+    
     
 }

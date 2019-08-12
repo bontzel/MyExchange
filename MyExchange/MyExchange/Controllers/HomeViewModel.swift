@@ -99,6 +99,18 @@ struct HomeViewModel {
         }
     }
     
+    func onHistory() -> CocoaAction {
+        return CocoaAction { _ in
+            
+            let historyViewModel = HistoryViewModel(exchangeService: self.exchangeService, coordinator: self.sceneCoordinator)
+            return self.sceneCoordinator
+                .transition(to: Scene.history(historyViewModel), type: .push)
+                .asObservable()
+                .map { _ in }
+            
+        }
+    }
+    
    
     func onUpdateCurrency() -> Action<String, Void> {
         return Action { newCurrency in

@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import RxDataSources
+import RxSwift
+
+typealias RatesForCurrency = [String: [Double]]
+typealias HistorySection = SectionModel<String, RatesForCurrency>
+
 
 struct HistoryViewModel {
  
@@ -17,6 +23,62 @@ struct HistoryViewModel {
         
         self.exchangeService = exchangeService
         self.sceneCoordinator = coordinator
+        
+    }
+    
+    var allRates: Observable<[HistorySection]> {
+                
+         return Observable.merge(self.exchangeService.lastFiveDaysHistory(for: "RON"), self.exchangeService.lastFiveDaysHistory(for: "USD"), self.exchangeService.lastFiveDaysHistory(for: "BGN"))
+            //get the all values from the given time for each symbol and the base currency. i.e: (["EUR": [1.5, 2.23, 2.55], "RON": [1.5, 2.23, 2.55]...], "BGN")
+            .flatMap { (historyQuote) -> Observable<(RatesForCurrency, String)> in
+               
+                return self.exchangeService.symbols()
+                    .flatMap { array -> Observable<String> in
+                        return Observable.from(array)
+                    }
+                    //get all the values from each day for a symbol. i.e: ([1.5, 2.23, 2.55], "EUR")
+                    .flatMap { (symbol) -> Observable<(([Double], String))> in
+                        
+                        guard symbol != historyQuote.base else {
+                            return Observable<(([Double], String))>.empty()
+                        }
+                        
+                        var array = [Double]()
+                        for day in historyQuote.rates {
+                            array.append(day[symbol] ?? 0.0)
+                        }
+                        
+                        return Observable.just((array, symbol))
+                        
+                    }
+                    //get them all. i.e: [([1.5, 2.23, 2.55], "EUR"), ([1.5, 2.23, 2.55], "RON")...]
+                    .toArray()
+                    //morph to dictionary and pair with base. i.e: (["EUR": [1.5, 2.23, 2.55], "RON"...], "BGN")
+                    .flatMap { (array) -> Observable<(RatesForCurrency, String)> in
+                    
+                        var rates = RatesForCurrency()
+                        for item in array {
+                            rates[item.1] = item.0
+                        }
+                        
+                        return Observable.just((rates, historyQuote.base))
+                    }
+            
+                
+            }
+            //get all 3 of them in the previous form
+            .toArray()
+            .flatMap { (items) -> Observable<[HistorySection]> in
+             
+                var sectionsArray = [HistorySection]()
+                
+                for item in items {
+                    sectionsArray.append(HistorySection.init(model: item.1, items: [item.0]))
+                }
+                
+                return Observable.of(sectionsArray)
+                
+            }
         
     }
     
