@@ -15,7 +15,9 @@ class HistoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+       
+        
+        
     }
 
     func configure(with rates: RatesForCurrency) {

@@ -57,6 +57,9 @@ struct ExchangeAPI {
         params["end_at"] = Date().paramString()
         params["base"] = base
         
+        print("start -> \(Date().addingTimeInterval(-432000.0).paramString())")
+        print("end -> \( Date().paramString())")
+
         let request: Observable<HistoryQuote> = ExchangeAPI.request(address: .history, parameters: params)
         
         return request

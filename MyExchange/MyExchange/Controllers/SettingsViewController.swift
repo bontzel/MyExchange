@@ -64,7 +64,8 @@ class SettingsViewController: UIViewController, BindableType {
         self.pickerView.rx.modelSelected(RxTimeInterval.self)
             .subscribe(
                 onNext: { interval in
-                        vm.intervalRelay.accept(interval.last ?? 3)
+                    //doesn't work properly
+//                        vm.intervalRelay.accept(interval.last ?? 3)
                 }
             )
             .disposed(by: self.rx.disposeBag)

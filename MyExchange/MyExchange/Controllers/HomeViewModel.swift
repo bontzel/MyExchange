@@ -34,40 +34,11 @@ struct HomeViewModel {
     
     
     var latestItems: Observable<[RatesSection]> {
-
-//        return Observable.combineLatest(self.interval.asObservable(), self.base.asObservable())
-//            .flatMap { (arg) -> Observable<[RatesSection]> in
-//
-//                let (interval, currency) = arg
-//
-//                return Observable<Int>.timer(0, period: interval, scheduler: MainScheduler.instance)
-//                    .flatMap { [currency] _ in
-//
-//                        return self.exchangeService.latestQuote(for: currency)
-//                            .map { quote in
-//                                RatesSection.init(model: quote.base, items: quote.rates)
-//                            }
-//                            .toArray()
-//
-//                    }
-//
-//
-//            }
-        
-        
-//
-//        return self.base.asObservable()
-//            .flatMap { currency in
-//                return self.exchangeService.latestQuote(for: currency)
-//                    .map { quote in
-//                        RatesSection.init(model: quote.base, items: quote.rates)
-//                    }
-//                    .toArray()
-//            }
         
         return self.interval.asObservable()
             .flatMap({ (interval) -> Observable<[RatesSection]> in
 
+                //need to dispose timer when new value is published
                 let timer =  Observable<Int>.timer(0, period: interval, scheduler: MainScheduler.instance)
 //                    .takeUntil(self.interval.asObservable())
 
