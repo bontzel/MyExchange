@@ -7,28 +7,62 @@ PODS:
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
   - Differentiator (3.1.0)
+  - Nimble (7.3.4)
   - "NSObject+Rx (4.4.1)":
     - RxSwift (~> 4.3)
+  - OHHTTPStubs (8.0.0):
+    - OHHTTPStubs/Default (= 8.0.0)
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
+    - OHHTTPStubs/Default
+  - RxBlocking (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxDataSources (3.1.0):
     - Differentiator (~> 3.0)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
+  - RxNimble (4.4.0):
+    - RxNimble/RxBlocking (= 4.4.0)
+  - RxNimble/Core (4.4.0):
+    - Nimble (~> 7.0)
+    - RxSwift (~> 4.2)
+  - RxNimble/RxBlocking (4.4.0):
+    - RxBlocking
+    - RxNimble/Core
   - RxRelay (0.1.3):
     - RxSwift
   - RxSwift (4.5.0)
+  - RxTest (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
   - Then (2.5.0)
 
 DEPENDENCIES:
   - Action
   - Alamofire
   - Charts
+  - Nimble
   - "NSObject+Rx"
+  - OHHTTPStubs
+  - OHHTTPStubs/Swift
+  - RxBlocking
   - RxCocoa
   - RxDataSources
+  - RxNimble
   - RxRelay
   - RxSwift
+  - RxTest
   - Then
 
 SPEC REPOS:
@@ -37,11 +71,16 @@ SPEC REPOS:
     - Alamofire
     - Charts
     - Differentiator
+    - Nimble
     - "NSObject+Rx"
+    - OHHTTPStubs
+    - RxBlocking
     - RxCocoa
     - RxDataSources
+    - RxNimble
     - RxRelay
     - RxSwift
+    - RxTest
     - Then
 
 SPEC CHECKSUMS:
@@ -49,13 +88,18 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   "NSObject+Rx": 9884a92f19b610795c431e10b4e601913b59c9e9
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
+  RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxNimble: ba6caf0195c37fd50dd4b967624b66ff580d781a
   RxRelay: e2a4a9910e2b23151c6ee2fe8d717016280d924f
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   Then: 0157115e883545c77967b452fe74a1d25fb796e1
 
-PODFILE CHECKSUM: bd95d99525a520a1d0a1ca8f001638aae2ea79f3
+PODFILE CHECKSUM: fa4d6058c7545fa273b24c0aa6425c004f088984
 
 COCOAPODS: 1.7.4

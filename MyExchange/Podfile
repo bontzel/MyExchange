@@ -25,10 +25,10 @@ end
 target 'MyExchangeTests' do
         platform :ios, '12.2'
         pods
-  #       pod 'RxTest'
-  #       pod 'RxBlocking'
-  #       pod 'Nimble'
-  # 		pod 'RxNimble'
-		# pod 'OHHTTPStubs'
-  # 		pod 'OHHTTPStubs/Swift'
+        pod 'RxTest'
+        pod 'RxBlocking'
+        pod 'Nimble'
+  		pod 'RxNimble'
+		pod 'OHHTTPStubs'
+  		pod 'OHHTTPStubs/Swift'
 end
